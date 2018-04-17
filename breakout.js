@@ -1,14 +1,11 @@
 var paddleHeight = 150;
 var ballRadius = 25;
 var halfPaddleHeight = paddleHeight / 2;
-var speedOfPaddle1 = 0;
 var positionOfPaddle1 = 460;
 var speedOfPaddle2 = 0;
 var positionOfPaddle2 = 460;
 var topPositionOfBall = 510;
 var leftPositionOfBall = 820;
-var topSpeedOfBall = 0;
-var leftSpeedOfBall = 0;
 var score1;
 var score2;
 

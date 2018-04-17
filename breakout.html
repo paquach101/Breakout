@@ -8,16 +8,16 @@
             margin: 0;
         }
 
-        * {
+        canvas {
             background: black;
             display: block;
             margin: 0 auto;
         }
         h1{
-            color: aqua;
+            color: black;
         }
         h3{
-            color: aqua;
+            color: black;
         }
     </style>
 
@@ -25,16 +25,17 @@
     <h3>Score</h3>
     <br>
     <body>
-        <div id = "paddle" style = "position: absolute; left: 800px; top: 900px; width: 280px; height: 20px; background-color: aquamarine; border-radius: 0%"></div>
-        <div id = "brick" style = "position: absolute; left: 1000px; top: 200px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id = "brick" style = "position: absolute; left: 1141px; top: 200px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id = "brick" style = "position: absolute; left: 1282px; top: 200px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id = "brick" style = "position: absolute; left: 859px; top: 200px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id = "brick" style = "position: absolute; left: 718px; top: 200px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id = "brick" style = "position: absolute; left: 577px; top: 200px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id= "ball" style = "position:absolute; left:1000px; top:876px; width: 25px; height:25px; background-color: red; border-radius: 50%;"></div>
+        <canvas id = "canvas" width = "1300" height = "700"></canvas>
+        <div id = "paddle" style = "position: absolute; left: 600px; top: 600px; width: 160px; height: 10px; background-color: aquamarine; border-radius: 0%"></div>
+        <div id = "brick" style = "position: absolute; left: 200px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
+        <div id = "brick" style = "position: absolute; left: 345px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
+        <div id = "brick" style = "position: absolute; left: 490px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
+        <div id = "brick" style = "position: absolute; left: px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
+        <div id = "brick" style = "position: absolute; left: 718px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
+        <div id = "brick" style = "position: absolute; left: 577px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
+        <div id= "ball" style = "position:absolute; left:600px; top:580px; width: 20px; height:20px; background-color: red; border-radius: 50%;"></div>
         <div id = "score" style = "position:absolute; top: 300px;"></div>
-        <sript src = "please_work.js"></sript>
+        <script src = "please_work.js"></script>
     </body>
 </head>
 
