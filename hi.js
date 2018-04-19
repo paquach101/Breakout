@@ -5,6 +5,8 @@ var x = canvas.width/2;
 var y = canvas.height-30;
 var dx = 2;
 var dy = -2;
+var speedx;
+var speedy;
 
 function drawBall() {
     ctx.beginPath();
@@ -12,6 +14,8 @@ function drawBall() {
     ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
+    this.speedx = 0;
+    this.speedy = 0;
 }
 
 function draw() {
@@ -20,7 +24,7 @@ function draw() {
 
     if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
-    }
+    }else if ()
     if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
         dy = -dy;
     }

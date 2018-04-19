@@ -1,19 +1,21 @@
 var paddleHeight = 150;
 var ballRadius = 25;
-var halfPaddleHeight = paddleHeight / 2;
+var halfPaddleHeight = paddleHeight / 3;
+var speedOfPaddle1 = 0;
 var positionOfPaddle1 = 460;
 var speedOfPaddle2 = 0;
 var positionOfPaddle2 = 460;
 var topPositionOfBall = 510;
 var leftPositionOfBall = 820;
-var score1;
-var score2;
+var topSpeedOfBall = 0;
+var leftSpeedOfBall = 0;
+
 
 document.addEventListener('keydown', function (e) {
-     if (e.keyCode == 39 || e.which == 39) { // W key
+     if (e.keyCode == 39 || e.which == 39) { // left arrow
       positionOfPaddle1 -= 10;
       document.getElementById("paddle1").style.top =
-                                          (positionOfPaddle1) + "px"
+                                          (positionOfPaddle1) + "px" + "width";
      }
      if (e.keyCode == 83 || e.which == 83) { // S Key
       positionOfPaddle1 += 10;
