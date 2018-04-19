@@ -1,4 +1,4 @@
-var canvas = document.getElementById("myCanvas");
+var canvas = document.getElementById("Canvas");
 var ctx = canvas.getContext("2d");
 var ballRadius = 10;
 var x = canvas.width/2;
@@ -10,12 +10,10 @@ var speedy;
 
 function drawBall() {
     ctx.beginPath();
-    ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+    ctx.arc(x, y, ballRadius, 0, Math.PI*2, true);
     ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
-    this.speedx = 0;
-    this.speedy = 0;
 }
 
 function draw() {
