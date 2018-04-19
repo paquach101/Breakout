@@ -2,6 +2,9 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="breakout.css"></script>
     <style>
         * {
             padding: 0;
@@ -13,10 +16,12 @@
             display: block;
             margin: 0 auto;
         }
-        h1{
+
+        h1 {
             color: black;
         }
-        h3{
+
+        h3 {
             color: black;
         }
     </style>
@@ -24,18 +29,12 @@
     <h1>Breakout Game</h1>
     <h3>Score</h3>
     <br>
+
     <body>
-        <canvas id = "canvas" width = "1300" height = "700"></canvas>
-        <div id = "paddle" style = "position: absolute; left: 600px; top: 600px; width: 160px; height: 10px; background-color: aquamarine; border-radius: 0%"></div>
-        <div id = "brick" style = "position: absolute; left: 200px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id = "brick" style = "position: absolute; left: 345px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id = "brick" style = "position: absolute; left: 490px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id = "brick" style = "position: absolute; left: px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id = "brick" style = "position: absolute; left: 718px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id = "brick" style = "position: absolute; left: 577px; top: 100px; width: 140px; height: 30px; background-color: coral;"></div>
-        <div id= "ball" style = "position:absolute; left:600px; top:580px; width: 20px; height:20px; background-color: red; border-radius: 50%;"></div>
-        <div id = "score" style = "position:absolute; top: 300px;"></div>
-        <script src = "please_work.js"></script>
+        <canvas id="canvas" width="1300" height="700"></canvas>
+        <div id="container"></div>
+        <div id="row1"></div>
+        <script src="breakout.js"></script>
     </body>
 </head>
 
