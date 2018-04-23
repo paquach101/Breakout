@@ -13,7 +13,7 @@ var canvas = document.getElementById("Canvas"),
 
 function createBlocks() {
     var numblocks = 20;
-    for (var i; i = 0; i < numblocks; i++) {
+    for (i = 0; i < numblocks; i++) {
         var elem = document.getElementById('row1');
         elem.className = "blocks";
         elem.id = "blocks" + 1;
@@ -21,7 +21,7 @@ function createBlocks() {
 }
 
 function paddle() {
-    context.beginpath();
+    context.beginPath();
     context.rect(paddleXpos, canvas.height - paddleHeight, paddleWidth, paddleHeight);
     context.fillstyle = "blue";
     context.fill();
@@ -30,7 +30,7 @@ function paddle() {
 
 function Ball() {
     context.beginPath();
-    context.arc(x, y, ballRadius, 0, Math.PI * 2);
+    context.arc(x, y, radius, 0, Math.PI * 2);
     context.fillStyle = "#0095DD";
     context.fill();
     context.closePath();
@@ -40,7 +40,12 @@ function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     Ball();
     paddle();
-
+    document.addEventListener('keydown', function (k) {
+        if (k.keycode == 100 || k.which == 100) {
+            paddle.paddleXpos -= 10;
+        } else if (k.keycode == 97 || k.which == 97)
+            paddle.paddleXpos += 10;
+    })
     if (x + dx > canvas.width - radius || x + dx < radius) {
         dx = -dx;
     }
