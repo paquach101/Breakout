@@ -7,14 +7,3 @@
     border-style: solid;
     color: aqua;
 }
-#thing{
-    position:absolute;
-    width: 100px;
-    height: 15px;
-    top: 785px;
-    left:450px;
-    background-color: aquamarine;
-}
-#thing:hover{
-    background-color: red;
-}
