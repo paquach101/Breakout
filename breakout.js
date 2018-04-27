@@ -35,18 +35,17 @@ document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(k) {
-    if (k.keycode == 30) {
+    if (k.keyCode == 37) {
         leftPressed = true;
-    } else if (k.keycode == 32) {
+    } else if (k.keyCode == 39) {
         rightPressed = true;
     }
-    console.log("hit")
 }
 
 function keyUpHandler(k) {
-    if (k.keycode == 30) {
-        leftpressed = false;
-    } else if (k.keycode == 32) {
+    if (k.keyCode == 37) {
+        leftPressed = false;
+    } else if (k.keyCode == 39) {
         rightPressed = false;
     }
 }
@@ -56,8 +55,6 @@ function drawBlocks() {
         for (j = 0; j < blocknumby; j++) {
             var blockx = (i * (blockwidth + blockspacing)) + blockxpos;
             var blocky = (j * (blockheight + blockspacing)) + blockypos;
-            blocks[i][j].x = blockx;
-            blocks[i][j].y = blocky;
             context.beginPath();
             context.rect(blockx, blocky, blockwidth, blockheight);
             context.fillStyle = "pink";
@@ -85,6 +82,10 @@ function Ball() {
 }
 
 function draw() {
+    if (x + radius < blockxpos - blockwidth/2) {
+        dx = -dx;
+        console.log(hit);
+    }
     context.clearRect(0, 0, canvas.width, canvas.height);
     Ball();
     paddle();
@@ -97,22 +98,12 @@ function draw() {
     }
 
     if (rightPressed && paddleXpos < canvas.width - paddleWidth) {
-        paddleXpos += 10;
+        paddleXpos += 5;
     } else if (leftPressed && paddleXpos > 0) {
-        paddleXpos -= 10;
-    }
-
-    if (blocks.blockxpos + blocks.blockwidth < Ball.x - Ball.radius && blocks.blockxpos - blocks.blockwidth > Ball.x + ball.radius) {
-        blocks.pop();
-        dx = -dx;
-        console.log(hit);
-    }
-    if (drawBlocks.blockypos + drawBlocks.blockheight < Ball.y - Ball.radius && drawBlocks.blockypos - drawBlocks.blockheight > Ball.y + ball.radius) {
-        blocks.pop();
-        dy = -dy;
+        paddleXpos -= 5;
     }
     x += dx;
     y += dy;
 }
 
-setInterval(draw, 10);
+setInterval(draw, 15);
