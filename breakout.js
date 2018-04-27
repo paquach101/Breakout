@@ -5,13 +5,13 @@ var canvas = document.getElementById("Canvas"),
     y = canvas.height - 30,
     dy = 2,
     dx = -2,
-    blocknumby = 6,
-    blocknumbx = 27,
     blockwidth = 30,
     blockheight = 15,
     blockspacing = 5,
-    blockxpos = 30,
-    blockypos = 30,
+    blockxpos = 0,
+    blockypos = 0,
+    blocknumbx = 27,
+    blocknumby = 6,
     paddleHeight = 15,
     paddleWidth = 100,
     paddleXpos = (canvas.width - paddleWidth) / 2,
@@ -31,6 +31,8 @@ for (i = 0; i < blocknumbx; i++) {
         };
     }
 }
+
+
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -50,11 +52,24 @@ function keyUpHandler(k) {
     }
 }
 
+function collision() {
+    for (i = 0; i < blocknumbx; i++) {
+        for (j = 0; j < blocknumby; j++) {
+            var block = blocks[i][j];
+            if (x > block.x && x < block.x + blockwidth && y > block.y && y < block.y + blockheight) {
+                dy = -dy;
+            }
+        }
+    }
+}
+
 function drawBlocks() {
     for (i = 0; i < blocknumbx; i++) {
         for (j = 0; j < blocknumby; j++) {
             var blockx = (i * (blockwidth + blockspacing)) + blockxpos;
             var blocky = (j * (blockheight + blockspacing)) + blockypos;
+            blocks[i][j].x = blockx;
+            blocks[i][j].y = blocky;
             context.beginPath();
             context.rect(blockx, blocky, blockwidth, blockheight);
             context.fillStyle = "pink";
@@ -82,11 +97,8 @@ function Ball() {
 }
 
 function draw() {
-    if (x + radius < blockxpos - blockwidth/2) {
-        dx = -dx;
-        console.log(hit);
-    }
     context.clearRect(0, 0, canvas.width, canvas.height);
+    collision();
     Ball();
     paddle();
     drawBlocks();
