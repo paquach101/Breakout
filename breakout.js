@@ -16,8 +16,8 @@ var canvas = document.getElementById("Canvas"),
     paddleWidth = 100,
     paddleXpos = (canvas.width - paddleWidth) / 2,
     paddleYpos = canvas.height - paddleHeight,
-    rightPressed = false,
-    leftPressed = false,
+    rightIsPressed = false,
+    leftIsPressed = false,
     speedx,
     speedy;
 
@@ -36,19 +36,20 @@ for (i = 0; i < blocknumbx; i++) {
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
+
 function keyDownHandler(k) {
-    if (k.keyCode == 37) {
-        leftPressed = true;
-    } else if (k.keyCode == 39) {
-        rightPressed = true;
+    if (k.keyCode == 65) {
+        leftIsPressed = true;
+    } else if (k.keyCode == 68) {
+        rightIsPressed = true;
     }
 }
 
 function keyUpHandler(k) {
-    if (k.keyCode == 37) {
-        leftPressed = false;
-    } else if (k.keyCode == 39) {
-        rightPressed = false;
+    if (k.keyCode == 65) {
+        leftIsPressed = false;
+    } else if (k.keyCode == 68) {
+        rightIsPressed = false;
     }
 }
 
@@ -111,9 +112,9 @@ function draw() {
         dy = -dy;
     }
 
-    if (rightPressed && paddleXpos < canvas.width - paddleWidth) {
+    if (rightIsPressed && paddleXpos < canvas.width - paddleWidth) {
         paddleXpos += 5;
-    } else if (leftPressed && paddleXpos > 0) {
+    } else if (leftIsPressed && paddleXpos > 0) {
         paddleXpos -= 5;
     }
 
