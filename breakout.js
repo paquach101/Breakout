@@ -5,9 +5,9 @@ var canvas = document.getElementById("Canvas"),
     y = canvas.height - 30,
     dy = 2,
     dx = -2,
-    blockwidth = 30,
-    blockheight = 15,
-    blockspacing = 5,
+    blockwidth = 80, //30
+    blockheight = 40, //15
+    blockspacing = 5, //5
     blockxpos = 0,
     blockypos = 0,
     blocknumbx = 27,
@@ -72,7 +72,7 @@ function drawBlocks() {
             blocks[i][j].y = blocky;
             context.beginPath();
             context.rect(blockx, blocky, blockwidth, blockheight);
-            context.fillStyle = "pink";
+            context.fillStyle = "red";
             context.fill();
             context.closePath();
         }
@@ -82,9 +82,10 @@ function drawBlocks() {
 function paddle() {
     context.beginPath();
     context.rect(paddleXpos, paddleYpos, paddleWidth, paddleHeight);
-    context.fillstyle = "blue";
+    context.fillstyle = "red";
     context.fill();
     context.closePath();
+    console.log("hit")
 }
 
 function Ball() {
@@ -102,6 +103,7 @@ function draw() {
     Ball();
     paddle();
     drawBlocks();
+
     if (x + dx > canvas.width - radius || x + dx < radius) {
         dx = -dx;
     }
@@ -113,6 +115,13 @@ function draw() {
         paddleXpos += 5;
     } else if (leftPressed && paddleXpos > 0) {
         paddleXpos -= 5;
+    }
+
+    if (paddle.x < Ball.x + Ball.width &&
+   paddle.x + paddle.width > Ball.x &&
+   paddle.y < Ball.y + Ball.height &&
+   paddle.height + paddle.y > Ball.y){
+        dy -= dy;
     }
     x += dx;
     y += dy;
