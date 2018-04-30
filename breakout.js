@@ -107,7 +107,8 @@ function draw() {
     if (x + dx > canvas.width - radius || x + dx < radius) {
         dx = -dx;
     }
-    if (y + dy > canvas.height - radius || y + dy < radius) {
+    else if (y + dy > canvas.height - radius || y + dy < radius) {
+        x = canvas.width - 500, y = canvas.height - 400;
         dy = -dy;
     }
 
@@ -125,11 +126,8 @@ function draw() {
         console.log("hit");
     }
 
-    if (dx + x > canvas.width - radius || x + dx < radius){
-        x = paddleWidth;
-    }
     x += dx;
     y += dy;
 }
 
-setInterval(draw, 15);
+setInterval(draw, 10);
