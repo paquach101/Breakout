@@ -16,8 +16,8 @@ var canvas = document.getElementById("Canvas"),
     paddleWidth = 100,
     paddleXpos = (canvas.width - paddleWidth) / 2,
     paddleYpos = canvas.height - paddleHeight,
-    rightIsPressed = false,
-    leftIsPressed = false,
+    dIsPressed = false,
+    aIsPressed = false,
     speedx,
     speedy;
 
@@ -39,17 +39,17 @@ document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(k) {
     if (k.keyCode == 65) {
-        leftIsPressed = true;
+        aIsPressed = true;
     } else if (k.keyCode == 68) {
-        rightIsPressed = true;
+        dIsPressed = true;
     }
 }
 
 function keyUpHandler(k) {
     if (k.keyCode == 65) {
-        leftIsPressed = false;
+        aIsPressed = false;
     } else if (k.keyCode == 68) {
-        rightIsPressed = false;
+       dIsPressed = false;
     }
 }
 
@@ -83,10 +83,9 @@ function drawBlocks() {
 function paddle() {
     context.beginPath();
     context.rect(paddleXpos, paddleYpos, paddleWidth, paddleHeight);
-    context.fillstyle = "red";
+    context.fillStyle = "red";
     context.fill();
     context.closePath();
-    console.log("hit")
 }
 
 function Ball() {
@@ -112,17 +111,22 @@ function draw() {
         dy = -dy;
     }
 
-    if (rightIsPressed && paddleXpos < canvas.width - paddleWidth) {
+    if (dIsPressed && paddleXpos < canvas.width - paddleWidth) {
         paddleXpos += 5;
-    } else if (leftIsPressed && paddleXpos > 0) {
+    } else if (aIsPressed && paddleXpos > 0) {
         paddleXpos -= 5;
     }
 
-    if (paddle.x < Ball.x + Ball.width &&
-   paddle.x + paddle.width > Ball.x &&
-   paddle.y < Ball.y + Ball.height &&
-   paddle.height + paddle.y > Ball.y){
-        dy -= dy;
+    if (paddleXpos < x + radius &&
+   x + paddleWidth > x &&
+   paddleYpos < y + radius &&
+   paddleHeight + paddleYpos > y){
+        dy = -dy;
+        console.log("hit");
+    }
+
+    if (dx + x > canvas.width - radius || x + dx < radius){
+        x = paddleWidth;
     }
     x += dx;
     y += dy;
