@@ -5,6 +5,7 @@ var canvas = document.getElementById("Canvas"),
     y = canvas.height - 30,
     dy = 2,
     dx = -2,
+    scorecheck = 0,
     blockwidth = 80, //30
     blockheight = 40, //15
     blockspacing = 5, //5
@@ -19,7 +20,8 @@ var canvas = document.getElementById("Canvas"),
     dIsPressed = false,
     aIsPressed = false,
     speedx,
-    speedy;
+    speedy,
+    scoreprogress = document.getElementById("score");
 
 var blocks = [];
 for (i = 0; i < blocknumbx; i++) {
@@ -27,7 +29,8 @@ for (i = 0; i < blocknumbx; i++) {
     for (j = 0; j < blocknumby; j++) {
         blocks[i][j] = {
             x: 0,
-            y: 0
+            y: 0,
+            hit: 1
         };
     }
 }
@@ -49,7 +52,7 @@ function keyUpHandler(k) {
     if (k.keyCode == 65) {
         aIsPressed = false;
     } else if (k.keyCode == 68) {
-       dIsPressed = false;
+        dIsPressed = false;
     }
 }
 
@@ -57,25 +60,33 @@ function collision() {
     for (i = 0; i < blocknumbx; i++) {
         for (j = 0; j < blocknumby; j++) {
             var block = blocks[i][j];
-            if (x > block.x && x < block.x + blockwidth && y > block.y && y < block.y + blockheight) {
-                dy = -dy;
+            if (block.hit == 1) {
+                if (x > block.x && x < block.x+blockwidth && y > block.y && y < block.y + blockheight) {
+                    block.hit = 0;
+                    dy = -dy;
+                    scorecheck++;
+                    scoreprogress.textContent = "Score : " + scorecheck;
+                }
             }
         }
     }
+
 }
 
 function drawBlocks() {
     for (i = 0; i < blocknumbx; i++) {
         for (j = 0; j < blocknumby; j++) {
-            var blockx = (i * (blockwidth + blockspacing)) + blockxpos;
-            var blocky = (j * (blockheight + blockspacing)) + blockypos;
-            blocks[i][j].x = blockx;
-            blocks[i][j].y = blocky;
-            context.beginPath();
-            context.rect(blockx, blocky, blockwidth, blockheight);
-            context.fillStyle = "red";
-            context.fill();
-            context.closePath();
+            if (blocks[i][j].hit == 1) {
+                var blockx = (i * (blockwidth + blockspacing)) + blockxpos;
+                var blocky = (j * (blockheight + blockspacing)) + blockypos;
+                blocks[i][j].x = blockx;
+                blocks[i][j].y = blocky;
+                context.beginPath();
+                context.rect(blockx, blocky, blockwidth, blockheight);
+                context.fillStyle = "red";
+                context.fill();
+                context.closePath();
+            }
         }
     }
 }
@@ -96,6 +107,11 @@ function Ball() {
     context.closePath();
 
 }
+function reset(){
+    if (y > canvas.height + radius){
+        document.location.reload();
+    }
+}
 
 function draw() {
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -103,12 +119,10 @@ function draw() {
     Ball();
     paddle();
     drawBlocks();
-
-    if (x + dx > canvas.width - radius || x + dx < radius) {
+    reset();
+    if (x > canvas.width + radius || x < 0) {
         dx = -dx;
-    }
-    else if (y + dy > canvas.height - radius || y + dy < radius) {
-        x = canvas.width - 500, y = canvas.height - 400;
+    } else if (y > canvas.height + radius || y < 0) {
         dy = -dy;
     }
 
@@ -118,12 +132,8 @@ function draw() {
         paddleXpos -= 5;
     }
 
-    if (paddleXpos < x + radius &&
-   x + paddleWidth > x &&
-   paddleYpos < y + radius &&
-   paddleHeight + paddleYpos > y){
+    if (x + radius > paddleXpos && paddleXpos + paddleWidth > x && paddleYpos < y + radius && paddleHeight + paddleYpos > y) {
         dy = -dy;
-        console.log("hit");
     }
 
     x += dx;
